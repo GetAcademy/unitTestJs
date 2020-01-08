@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib.js" type="text/javascript"></script>
+</head>
+<body>
+    <input type="text" oninput="handleNewText(this)" />
+    <div id="reversedText"></div>
+    <script>
+        function handleNewText(inputTag) {
+            let text = inputTag.value;
+            let reversedText = reverseText(text);
+            document.getElementById('reversedText').innerHTML = reversedText;
+        }
+    </script>
+</body>
+</html>
