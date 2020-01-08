@@ -31,8 +31,61 @@
 
     QUnit.test("velge den som er valgt fra før", function (assert) {
         let model = getMockModel();
+        model.selectedBarNo = 2;
         selectBar(2, model);
-        assert.equal(model.selectedBarNo, 2);
+        assert.equal(model.selectedBarNo, null);
+    });
+
+    QUnit.test("legge til ny stolpe ", function (assert) {
+        let model = getMockModel();
+        model.currentNumber = 7;
+        add(model);
+        assert.equal(model.numbers.length, 6);
+    });
+
+    QUnit.test("legge til ny stolpe - uten tall", function (assert) {
+        let model = getMockModel();
+        model.currentNumber = null;
+        add(model);
+        assert.equal(model.numbers.length, 5);
+    });
+
+    QUnit.test("endre stolpe", function (assert) {
+        let model = getMockModel();
+        model.currentNumber = 2;
+        model.selectedBarNo = 1;
+        edit(model);
+        assert.equal(model.numbers[0], 2);
+    });
+
+    QUnit.test("endre stolpe - uten verdi", function (assert) {
+        let model = getMockModel();
+        model.currentNumber = null;
+        model.selectedBarNo = 1;
+        edit(model);
+        assert.equal(model.numbers[0], 7);
+    });
+
+    QUnit.test("endre stolpe - uten valgt stolpe", function (assert) {
+        let model = getMockModel();
+        model.currentNumber = 2;
+        model.selectedBarNo = null;
+        edit(model);
+        assert.equal(model.numbers.join(), '7,8,2,5,3');
+    });
+
+    QUnit.test("slette stolpe", function (assert) {
+        let model = getMockModel();
+        model.selectedBarNo = 1;
+        remove(model);
+        assert.equal(model.numbers.length, 4);
+    });
+
+    QUnit.test("slette stolpe - uten valgt stolpe", function (assert) {
+        let model = getMockModel();
+        model.selectedBarNo = null;
+        remove(model);
+        assert.equal(model.numbers.join(), '7,8,2,5,3');
     });
 
 </script>
