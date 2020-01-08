@@ -4,7 +4,7 @@
     for (let i = 0; i < model.numbers.length; i++) {
         svgOutput += createBars(model.numbers[i], i + 1);
     }
-    const errorHtml = !model.errorMessage ? '' : `
+    const errorHtml = model.errorMessage == null ? '' : `
         <span style="color: red">${model.errorMessage}</span>
         <button onclick="removeError(model)">&times;</button>
     `;
