@@ -1,43 +1,45 @@
-﻿function chosenbar(numberOfBar) {
+﻿function selectBar(numberOfBar, model) {
     model.selectedBarNo = model.selectedBarNo == numberOfBar ? null : numberOfBar;
     model.updateView();
 }
 
-function add() {
-    if (!valueIsBetween1and10() || !hasRoomForAnotherBar()) return;
+function add(model) {
+    if (!valueIsBetween1and10(model) || !hasRoomForAnotherBar(model)) return;
     model.numbers.push(model.currentNumber);
     model.updateView();
 }
 
-function edit() {
-    if (!valueIsBetween1and10()) return;
-    model.numbers[getSelectedBarIndex()] = model.currentNumber;
+function edit(model) {
+    if (!valueIsBetween1and10(model)) return;
+    const selectedBarIndex = parseInt(model.selectedBarNo) - 1;
+    model.numbers[selectedBarIndex] = model.currentNumber;
     model.updateView();
 }
 
-function remove() {
+function remove(model) {
     const index = parseInt(model.selectedBarNo) - 1;
     if (index < 0 || index >= model.numbers.length) return;
     model.numbers.splice(index, 1);
     model.updateView();
 }
 
-function valueIsBetween1and10() {
+function removeError(model) {
+    model.errorMessage = null;
+}
+
+function valueIsBetween1and10(model) {
     const isValid = model.currentNumber >= 1 && model.currentNumber <= 10;
     if (!isValid) {
-        alert("Kan kun legge til en stolpe med verdi 1 til 10");
+        model.errorMessage = "Kan kun legge til en stolpe med verdi 1 til 10";
     }
     return isValid;
 }
 
-function hasRoomForAnotherBar() {
+function hasRoomForAnotherBar(model) {
     const isValid = model.numbers.length <= 7;
     if (!isValid) {
-        alert("Kan ikke ha mer enn 8 stolper om gangen");
+        model.errorMessage = "Kan ikke ha mer enn 8 stolper om gangen";
     }
     return isValid;
 }
 
-function getSelectedBarIndex() {
-    return parseInt(model.selectedBarNo) - 1;
-}
