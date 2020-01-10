@@ -1,42 +1,43 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>QUnit Example</title>
     <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
 </head>
+
 <body>
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
     <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
     <script src="lib.js"></script>
     <script>
-
-        QUnit.test("snu tekst - Terje", function (assert) {
+        QUnit.test("snu tekst - Terje", function(assert) {
             const actual = reverseText('Terje');
             const expected = 'ejreT';
             assert.equal(actual, expected);
         });
 
-        QUnit.test("snu tekst - blank", function (assert) {
+        QUnit.test("snu tekst - blank", function(assert) {
             const actual = reverseText('');
             const expected = '';
             assert.equal(actual, expected);
         });
 
-        QUnit.test("snu tekst - null", function (assert) {
+        QUnit.test("snu tekst - null", function(assert) {
             const actual = reverseText(null);
             const expected = null;
             assert.equal(actual, expected);
         });
 
-        QUnit.test("snu tekst - undefined", function (assert) {
+        QUnit.test("snu tekst - undefined", function(assert) {
             const actual = reverseText(undefined);
             const expected = undefined;
             assert.equal(actual, expected);
         });
-
     </script>
 </body>
+
 </html>
