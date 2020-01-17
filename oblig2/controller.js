@@ -4,14 +4,14 @@
 }
 
 function add(model) {
-    if (valueIsBetween1and10(model) || hasRoomForAnotherBar(model)) {
+    if (valueIsValid(model) || hasRoomForAnotherBar(model)) {
         model.numbers.push(model.currentNumber);
     }
     model.updateView();
 }
 
 function edit(model) {
-    if (valueIsBetween1and10(model)) {
+    if (valueIsValid(model)) {
         const selectedBarIndex = parseInt(model.selectedBarNo) - 1;
         model.numbers[selectedBarIndex] = model.currentNumber;
     }
@@ -31,7 +31,7 @@ function removeError(model) {
     model.updateView();
 }
 
-function valueIsBetween1and10(model) {
+function valueIsValid(model) {
     const isValid = model.currentNumber >= 1 && model.currentNumber <= 10;
     if (!isValid) {
         model.errorMessage = "Kan kun legge til en stolpe med verdi 1 til 10";
@@ -46,4 +46,3 @@ function hasRoomForAnotherBar(model) {
     }
     return isValid;
 }
-

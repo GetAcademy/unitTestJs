@@ -44,7 +44,8 @@ function createBars(number, numberOfBar) {
 }
 
 function colorBars(min, max, val) {
-    let minHue = 0, maxhue = 240;
+    let minHue = 0,
+        maxhue = 240;
     let currentPrecentage = (val - min) / (max - min)
     let cString = "hsl(" + ((currentPrecentage * (maxhue - minHue)) + minHue) + ",100%,50%)";
     return cString;
